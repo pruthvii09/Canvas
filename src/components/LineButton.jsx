@@ -14,6 +14,7 @@ const LineButton = ({ tool, setTool }) => {
       <label
         htmlFor="line"
         style={{
+          fontSize: "14px",
           display: "flex",
           padding: "5px 10px",
           color: "white",
@@ -25,7 +26,7 @@ const LineButton = ({ tool, setTool }) => {
           cursor: "pointer", // set cursor to pointer for better UX
         }}
       >
-        <Tally2 className="lucide-icon" /> Line
+        <Tally2 size={19} className="lucide-icon" /> Line
       </label>
     </div>
   );

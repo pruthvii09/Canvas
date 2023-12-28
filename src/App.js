@@ -1,23 +1,13 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import rough from "roughjs/bundled/rough.esm";
 import getStroke from "perfect-freehand";
-import {
-  BoxSelect,
-  Tally2,
-  RectangleHorizontal,
-  Pencil,
-  CaseSensitive,
-  Undo,
-  Redo,
-} from "lucide-react";
-import "./App.css";
-import RectangleButton from "./components/RectangleButton";
-import PencilButton from "./components/PencilButton";
-import TextButton from "./components/TextButton";
-import LineButton from "./components/LineButton";
-import SelectButton from "./components/SelectButton";
-import SelectFont from "./components/SelectFont";
-
+import LineButton from "../src/components/LineButton";
+import PencilButton from "../src/components/PencilButton";
+import RectangleButton from "../src/components/RectangleButton";
+import SelectButton from "../src/components/SelectButton";
+// import SelectFont from "../src/components/SelectFont";
+import TextButton from "../src/components/TextButton";
+// import SelectColor from "../src/components/SelectColor";
 const generator = rough.generator();
 
 const createElement = (id, x1, y1, x2, y2, type) => {
@@ -295,6 +285,7 @@ const App = () => {
 
   const updateElement = (id, x1, y1, x2, y2, type, options) => {
     const elementsCopy = [...elements];
+    console.log(elementsCopy);
 
     switch (type) {
       case "line":
@@ -449,27 +440,47 @@ const App = () => {
     const { id, x1, y1, type } = selectedElement;
     setAction("none");
     setSelectedElement(null);
-    updateElement(id, x1, y1, null, null, type, { text: event.target.value });
+    updateElement(id, x1, y1, null, null, type, {
+      text: event.target.value,
+      background: "white",
+      color: "white",
+    });
   };
-  const [font, setFont] = useState("Arial"); // Set a default font
 
+  // const [font, setFont] = useState("areial");
+  // const [color, setColor] = useState("red");
   return (
-    <div style={{ padding: "0px 50px" }}>
-      <div style={{ display: "flex", alignItems: "center", position: "fixed", zIndex: 2 }}>
+    <div style={{ color: "white" }}>
+      <div
+        style={{
+          position: "fixed",
+          zIndex: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <SelectButton tool={tool} setTool={setTool} />
         <LineButton tool={tool} setTool={setTool} />
         <RectangleButton tool={tool} setTool={setTool} />
         <PencilButton tool={tool} setTool={setTool} />
         <TextButton tool={tool} setTool={setTool} />
-        <SelectFont setFont={setFont} font={font} />
+        {/* <SelectFont setFont={setFont} font={font} />
+        <SelectColor setColor={setColor} color={color} /> */}
       </div>
-      <div style={{ display: "flex", position: "fixed", zIndex: 2, bottom: 0, padding: 10 }}>
-        <button onClick={undo}>
-          <Undo className="lucide-icon" /> Undo
-        </button>
-        <button onClick={redo}>
-          <Redo className="lucide-icon" /> Redo
-        </button>
+      <div
+        style={{
+          position: "fixed",
+          zIndex: 2,
+          bottom: 0,
+          padding: 10,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <button onClick={undo}>Undo</button>
+        <button onClick={redo}>Redo</button>
       </div>
       {action === "writing" ? (
         <textarea
@@ -479,7 +490,7 @@ const App = () => {
             position: "fixed",
             top: selectedElement.y1 - 2 + panOffset.y,
             left: selectedElement.x1 + panOffset.x,
-            font: `24px ${font}`,
+            font: "24px Sora",
             margin: 0,
             padding: 0,
             border: "1px dotted gray",
@@ -494,20 +505,12 @@ const App = () => {
       ) : null}
       <canvas
         id="canvas"
-        width={1200} // Set your desired fixed width
-        height={415}
+        width={window.innerWidth}
+        height={window.innerHeight}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        style={{
-          position: "absolute",
-          top: "60px",
-          zIndex: 1,
-          border: "1px dotted black",
-          borderRadius: "10px",
-          backgroundColor: "#f0f0f0",
-          overflow: "auto", // Enable scrolling if the content exceeds the canvas size
-        }}
+        style={{ position: "absolute", zIndex: 1, color: "white" }}
       >
         Canvas
       </canvas>

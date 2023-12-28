@@ -14,6 +14,7 @@ const SelectButton = ({ tool, setTool }) => {
       <label
         htmlFor="selection"
         style={{
+          fontSize: "14px",
           display: "flex",
           padding: "5px 10px",
           color: "white",
@@ -25,7 +26,7 @@ const SelectButton = ({ tool, setTool }) => {
           cursor: "pointer", // set cursor to pointer for better UX
         }}
       >
-        <BoxSelect className="lucide-icon" /> Selection
+        <BoxSelect size={19} className="lucide-icon" /> Selection
       </label>
     </div>
   );

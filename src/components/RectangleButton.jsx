@@ -15,6 +15,7 @@ const RectangleButton = ({ tool, setTool }) => {
       <label
         htmlFor="rectangle"
         style={{
+          fontSize: "14px",
           display: "flex",
           padding: "5px 10px",
           color: "white",
@@ -27,7 +28,7 @@ const RectangleButton = ({ tool, setTool }) => {
         }}
         onClick={() => setTool("rectangle")} // handle click on the label
       >
-        <RectangleHorizontal className="lucide-icon" /> Rectangle
+        <RectangleHorizontal size={19} className="lucide-icon" /> Rectangle
       </label>
     </div>
   );

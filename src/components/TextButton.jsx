@@ -14,6 +14,7 @@ const TextButton = ({ tool, setTool }) => {
       <label
         htmlFor="text"
         style={{
+          fontSize: "14px",
           display: "flex",
           padding: "5px 10px",
           color: "white",
@@ -25,7 +26,7 @@ const TextButton = ({ tool, setTool }) => {
           cursor: "pointer", // set cursor to pointer for better UX
         }}
       >
-        <CaseSensitive className="lucide-icon" /> Text
+        <CaseSensitive size={19} className="lucide-icon" /> Text
       </label>
     </div>
   );

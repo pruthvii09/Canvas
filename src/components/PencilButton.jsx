@@ -15,6 +15,7 @@ const PencilButton = ({ tool, setTool }) => {
       <label
         htmlFor="pencil"
         style={{
+          fontSize: "14px",
           display: "flex",
           padding: "5px 10px",
           color: "white",
@@ -26,7 +27,7 @@ const PencilButton = ({ tool, setTool }) => {
           cursor: "pointer", // set cursor to pointer for better UX
         }}
       >
-        <Pencil className="lucide-icon" /> Pencil
+        <Pencil size={19} className="lucide-icon" /> Pencil
       </label>
     </div>
   );
